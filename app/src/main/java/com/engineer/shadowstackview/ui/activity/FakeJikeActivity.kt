@@ -1,7 +1,6 @@
 package com.engineer.shadowstackview.ui.activity
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.ShadowStackView
 import com.engineer.shadowstackview.R
@@ -15,14 +14,13 @@ class FakeJikeActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_fake_jike)
 
-        val shadowStack = ShadowStackView<View>(this)
-
+        val shadowStack = ShadowStackView(this)
         shadowStack.setTargetView(image)
 
-        val shadowStack1 = ShadowStackView<View>(this)
+        val shadowStack1 = ShadowStackView(this)
         shadowStack1.setTargetView(text)
 
-        val shadowStack2 = ShadowStackView<View>(this)
+        val shadowStack2 = ShadowStackView(this)
         shadowStack2.setTargetView(layout)
 
     }

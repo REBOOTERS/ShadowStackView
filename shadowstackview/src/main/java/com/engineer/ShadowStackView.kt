@@ -20,13 +20,13 @@ import java.util.*
 
 const val TAG = "ShadowStackView"
 
-class ShadowStackView<T : View> : View.OnTouchListener {
+class ShadowStackView : View.OnTouchListener {
     private val TIME = 150
     private val mShadowCount = 8
 
     private var mActivity: FragmentActivity
     private lateinit var mContainer: ViewGroup
-    private lateinit var mTargetView: T
+    private lateinit var mTargetView: View
 
     private var mTargetViewHeight: Int = 0
     private var mTargetViewWidth: Int = 0
@@ -48,7 +48,7 @@ class ShadowStackView<T : View> : View.OnTouchListener {
     }
 
 
-    fun setTargetView(targetView: T) {
+    fun setTargetView(targetView: View) {
         mTargetView = targetView
         mContainer = mActivity.window.decorView as ViewGroup
         mVelocityTracker = VelocityTracker.obtain()

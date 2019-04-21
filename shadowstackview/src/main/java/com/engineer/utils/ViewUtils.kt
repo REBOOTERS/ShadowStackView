@@ -39,11 +39,10 @@ object ViewUtils {
 
 
     fun getBitmapFromView(view: View): Bitmap {
-        val bitmap: Bitmap
         view.isDrawingCacheEnabled = true
         view.buildDrawingCache()
-        bitmap = view.drawingCache
-        //        view.setDrawingCacheEnabled(false);
+        val bitmap = view.drawingCache
+//        view.isDrawingCacheEnabled = false
         return bitmap
     }
 }
