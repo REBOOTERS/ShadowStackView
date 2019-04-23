@@ -10,6 +10,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
+                android:name=".ui.TabsActivity"
+                android:label="@string/title_activity_tabs"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
                 android:name=".ui.activity.TabsActivity"
                 android:label="@string/title_activity_tabs"
                 android:theme="@style/AppTheme.NoActionBar">
