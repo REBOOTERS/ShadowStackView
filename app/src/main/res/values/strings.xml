@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ShadowStackView</string>
+    <string name="content">Create complex layouts with ConstraintLayout by adding constraints from each view to other views and guidelines. Then preview your layout on any screen size by selecting one of various device configurations or by simply resizing the preview window.</string>
+    <string name="title_activity_tabs">TabsActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.engineer.shadowstackview.ui.activity
+package com.engineer.shadowstackview.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
