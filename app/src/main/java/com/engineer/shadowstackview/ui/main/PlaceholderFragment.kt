@@ -1,17 +1,17 @@
-package com.engineer.shadowstackview.ui.ui.main
+package com.engineer.shadowstackview.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.engineer.shadowstackview.R
+import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
- * A placeholder fragment containing a simple view.
+ * A placeholder fragment containing a simple targetView.
  */
 class PlaceholderFragment : Fragment() {
 
@@ -29,9 +29,8 @@ class PlaceholderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
         pageViewModel.text.observe(this, Observer<String> {
-            textView.text = it
+            section_label.text = it
         })
         return root
     }

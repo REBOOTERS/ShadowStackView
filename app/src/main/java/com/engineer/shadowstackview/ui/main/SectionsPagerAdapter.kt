@@ -1,4 +1,4 @@
-package com.engineer.shadowstackview.ui.ui.main
+package com.engineer.shadowstackview.ui.main
 
 import android.content.Context
 import androidx.fragment.app.Fragment

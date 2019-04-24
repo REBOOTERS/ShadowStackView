@@ -1,14 +1,14 @@
-package com.engineer
+package com.engineer.view
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.graphics.Bitmap
 import android.view.*
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import com.engineer.internal.Creator
 import com.engineer.utils.SysUtil
-import com.engineer.utils.ViewUtils
+import com.engineer.utils.ViewUtil
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
@@ -19,14 +19,17 @@ import java.util.*
  */
 
 const val TAG = "ShadowStackView"
+const val DEFAULT_SHADOW_COUNT = 8
+const val TIME = 150
 
-class ShadowStackView : View.OnTouchListener {
-    private val TIME = 150
-    private val mShadowCount = 8
+class ShadowStackView(activity: Activity) : View.OnTouchListener {
 
-    private var mActivity: FragmentActivity
-    private lateinit var mContainer: ViewGroup
+    private var mShadowCount = DEFAULT_SHADOW_COUNT
+
+    private val mActivity: Activity = activity
+    private var mContainer: ViewGroup? = null
     private lateinit var mTargetView: View
+    private lateinit var mVelocityTracker: VelocityTracker
 
     private var mTargetViewHeight: Int = 0
     private var mTargetViewWidth: Int = 0
@@ -36,21 +39,21 @@ class ShadowStackView : View.OnTouchListener {
     // copy bitmap of TargetView
     private lateinit var mFakeView: Bitmap
     private val mChildViews = ArrayList<ImageView>()
-    private lateinit var mVelocityTracker: VelocityTracker
 
 
-    constructor(activity: FragmentActivity) {
-        mActivity = activity
+    fun setShadowCount(count: Int) {
+        mShadowCount = count
     }
 
-    constructor(fragment: Fragment) {
-        mActivity = fragment.activity!!
+    fun setContainer(container: ViewGroup?) {
+        mContainer = container
     }
-
 
     fun setTargetView(targetView: View) {
         mTargetView = targetView
-        mContainer = mActivity.window.decorView as ViewGroup
+        if (mContainer == null) {
+            mContainer = mActivity.window.decorView as ViewGroup
+        }
         mVelocityTracker = VelocityTracker.obtain()
 
         measureAndAttach()
@@ -111,14 +114,14 @@ class ShadowStackView : View.OnTouchListener {
         mTargetViewWidth = mTargetView.width
         mTargetViewHeight = mTargetView.height
         if (SysUtil.isOverAndroid8()) {
-            ViewUtils.getBitmapFormView(mTargetView, mActivity, object : ViewUtils.Callback {
+            ViewUtil.getBitmapFormView(mTargetView, mActivity, object : ViewUtil.Callback {
                 override fun onResult(bitmap: Bitmap) {
                     mFakeView = bitmap
                     attachToDecorView()
                 }
             })
         } else {
-            mFakeView = ViewUtils.getBitmapFromView(mTargetView)
+            mFakeView = ViewUtil.getBitmapFromView(mTargetView)
             attachToDecorView()
         }
     }
@@ -128,7 +131,7 @@ class ShadowStackView : View.OnTouchListener {
 
         if (mChildViews.isNotEmpty()) {
             for (child in mChildViews) {
-                mContainer.removeView(child)
+                mContainer?.removeView(child)
             }
             mChildViews.clear()
         }
@@ -142,7 +145,7 @@ class ShadowStackView : View.OnTouchListener {
             } else {
                 shadow = ImageView(mActivity)
             }
-            mContainer.addView(shadow)
+            mContainer?.addView(shadow)
             shadow.layoutParams.width = mTargetViewWidth
             shadow.layoutParams.height = mTargetViewHeight
             shadow.setImageBitmap(mFakeView)
@@ -183,9 +186,8 @@ class ShadowStackView : View.OnTouchListener {
         mVelocityTracker.addMovement(event)
         val velocityX: Int
         val velocityY: Int
-        val action = event.action
 
-        when (action) {
+        when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 updateTargetViewPosition()
                 if (event.eventTime - event.downTime >= TIME) {

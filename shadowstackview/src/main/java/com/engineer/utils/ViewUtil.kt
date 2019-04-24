@@ -15,15 +15,14 @@ import androidx.fragment.app.FragmentActivity
  * @author: rookie
  * @since: 2019-03-21
  */
-object ViewUtils {
+object ViewUtil {
 
     interface Callback {
         fun onResult(bitmap: Bitmap)
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
-    fun getBitmapFormView(view: View, activity: FragmentActivity, callback: Callback) {
+    fun getBitmapFormView(view: View, activity: Activity, callback: Callback) {
         val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
 
         val locations = IntArray(2)
@@ -42,7 +41,7 @@ object ViewUtils {
         view.isDrawingCacheEnabled = true
         view.buildDrawingCache()
         val bitmap = view.drawingCache
-//        view.isDrawingCacheEnabled = false
+//        targetView.isDrawingCacheEnabled = false
         return bitmap
     }
 }
