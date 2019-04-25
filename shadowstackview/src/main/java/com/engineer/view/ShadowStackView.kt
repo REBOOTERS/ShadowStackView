@@ -27,7 +27,7 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
     private var mShadowCount = DEFAULT_SHADOW_COUNT
 
     private val mActivity: Activity = activity
-    private var mContainer: ViewGroup? = null
+    private lateinit var mContainer: ViewGroup
     private lateinit var mTargetView: View
     private lateinit var mVelocityTracker: VelocityTracker
 
@@ -45,7 +45,7 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
         mShadowCount = count
     }
 
-    fun setContainer(container: ViewGroup?) {
+    fun setContainer(container: ViewGroup) {
         mContainer = container
     }
 
@@ -145,7 +145,7 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
             } else {
                 shadow = ImageView(mActivity)
             }
-            mContainer?.addView(shadow)
+            mContainer.addView(shadow)
             shadow.layoutParams.width = mTargetViewWidth
             shadow.layoutParams.height = mTargetViewHeight
             shadow.setImageBitmap(mFakeView)
