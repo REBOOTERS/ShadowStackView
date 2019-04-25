@@ -6,7 +6,7 @@ import android.graphics.Bitmap
 import android.view.*
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
-import com.engineer.internal.Creator
+import com.engineer.shadowstackview.R
 import com.engineer.utils.SysUtil
 import com.engineer.utils.ViewUtil
 import de.hdodenhof.circleimageview.CircleImageView
@@ -27,7 +27,7 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
     private var mShadowCount = DEFAULT_SHADOW_COUNT
 
     private val mActivity: Activity = activity
-    private lateinit var mContainer: ViewGroup
+    private var mContainer: ViewGroup? = null
     private lateinit var mTargetView: View
     private lateinit var mVelocityTracker: VelocityTracker
 
@@ -45,7 +45,7 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
         mShadowCount = count
     }
 
-    fun setContainer(container: ViewGroup) {
+    fun setContainer(container: ViewGroup?) {
         mContainer = container
     }
 
@@ -59,7 +59,7 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
         measureAndAttach()
 
         mTargetView.viewTreeObserver.addOnScrollChangedListener {
-            if (mTargetViewWidth > 0 && mTargetViewHeight > 0 && mFakeView != null) {
+            if (mTargetViewWidth > 0 && mTargetViewHeight > 0) {
                 updateChildViewsPosition()
             }
         }
@@ -137,15 +137,15 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
         }
         //
         updateTargetViewPosition()
+
         for (i in 0 until mShadowCount) {
             val shadow: ImageView
-
             if (mTargetView is CircleImageView) {
                 shadow = CircleImageView(mActivity)
             } else {
                 shadow = ImageView(mActivity)
             }
-            mContainer.addView(shadow)
+            mContainer?.addView(shadow)
             shadow.layoutParams.width = mTargetViewWidth
             shadow.layoutParams.height = mTargetViewHeight
             shadow.setImageBitmap(mFakeView)
@@ -153,6 +153,8 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
             shadow.translationY = mOriginLocation[1].toFloat()
             val alpha = if (i == mShadowCount - 1) 1.0f else 0.5f / mShadowCount * (i + 1)
             shadow.alpha = alpha
+            shadow.background = mActivity.getDrawable(R.drawable.red_background)
+            shadow.background.alpha = 0
             mChildViews.add(shadow)
             if (i == mShadowCount - 1) {
                 shadow.setOnTouchListener(this)

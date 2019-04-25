@@ -7,7 +7,7 @@ import com.engineer.shadowstackview.R
 import kotlinx.android.synthetic.main.activity_fake_jike.*
 import org.jetbrains.annotations.NotNull
 
-class FakeJikeActivity : AppCompatActivity() {
+class FakeActivity : AppCompatActivity() {
 
     override fun onCreate(@NotNull savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

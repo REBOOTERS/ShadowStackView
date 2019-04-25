@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".ui.main.fragments.BlankFragmentA">
+
+    <TextView
+            android:background="@color/transparent"
+            android:id="@+id/text_view_1"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/cpb_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_blank_fragment_a"/>
+
+</FrameLayout>

@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/cpb_blue"
         tools:context=".ui.TabsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -21,6 +22,13 @@
                 android:padding="@dimen/appbar_padding"
                 android:text="@string/app_name"
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+
+        <ImageView
+                android:id="@+id/test"
+                android:scaleType="fitXY"
+                android:src="@drawable/star"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
 
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
