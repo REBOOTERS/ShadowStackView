@@ -37,9 +37,9 @@ more detail usage could be found in [example](https://github.com/REBOOTERS/Shado
 
 ## todo 
 
-[ ] **support Custom Container**
-[ ] support LinearLayout 
-[ ] support Scrollable RecyclerView 
+- [ ] support Custom Container
+- [ ] support LinearLayout 
+- [ ] support Scrollable RecyclerView 
 
 
 ## Thanks
