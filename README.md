@@ -28,7 +28,7 @@ ShadowStack.with(this)
 
 set **Shadow-View** count.
 
-more detail usage could be found in [example]()
+more detail usage could be found in [example](https://github.com/REBOOTERS/ShadowStackView/blob/master/app/src/main/java/com/engineer/shadowstackview/ui/activity/FakeActivity.kt)
 
 **Attention :The rootView of Activity (aka the layout.xml used to setContentView) can not be LinearLayout**
 
@@ -38,11 +38,11 @@ more detail usage could be found in [example]()
 ## todo 
 
 [ ] **support Custom Container**
-[ ] support LinearLayout
-[ ] support Scrollable RecylerView
+[ ] support LinearLayout 
+[ ] support Scrollable RecyclerView 
 
 
 ## Thanks
-This library is inspired by [Laevatein](https://github.com/nohana/Laevatein) and uses some of its source code.
+This library is inspired by [devilist/SnakeViewMaker](https://github.com/devilist/SnakeViewMaker) and uses some of its source code.
 
 
