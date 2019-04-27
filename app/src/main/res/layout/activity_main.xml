@@ -22,5 +22,11 @@
             android:text="fragment"
             android:layout_height="wrap_content"
             />
-
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:id="@+id/scrolling"
+            android:layout_margin="10dp"
+            android:text="scrolling"
+            android:layout_height="wrap_content"
+            />
 </LinearLayout>

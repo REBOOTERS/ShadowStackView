@@ -12,13 +12,8 @@ import java.lang.ref.WeakReference
  * Created on 2019/4/24.
  * @author rookie
  */
-class ShadowStack {
-    private var  mActivity:WeakReference<Activity>
-
-    private constructor(activity: Activity){
-        mActivity = WeakReference(activity)
-    }
-
+class ShadowStack private constructor(activity: Activity) {
+    private var  mActivity:WeakReference<Activity> = WeakReference(activity)
 
     companion object {
         fun <T :Activity> with(activity: T):ShadowStack {
@@ -30,7 +25,7 @@ class ShadowStack {
         return Creator(this, view)
     }
 
-    internal fun getActivity(): Activity {
-        return mActivity.get()!!
+    internal fun getActivity(): Activity? {
+        return mActivity.get()
     }
 }

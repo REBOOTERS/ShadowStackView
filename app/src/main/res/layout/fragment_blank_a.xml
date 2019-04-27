@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.main.fragments.BlankFragmentA">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transblue"
+                tools:context=".ui.fragments.BlankFragmentA">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:elevation="4dp"
+            android:id="@+id/view_1"
+            android:layout_margin="20dp"
+            android:src="@drawable/avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_margin="20dp"
+            android:id="@+id/list"
+            android:layout_below="@id/view_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     <TextView
-            android:background="@color/transparent"
-            android:id="@+id/text_view_1"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:textColor="@color/cpb_red"
+            android:layout_margin="20dp"
+            android:layout_toEndOf="@id/view_1"
+            android:textColor="@color/white"
+            android:text="Blank Fragment A"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment_a"/>
+            android:id="@+id/textView"/>
 
-</FrameLayout>
+    <TextView
+            android:layout_toEndOf="@id/view_1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Don't support TextView"
+            android:layout_margin="20dp"
+            android:background="@drawable/gradient_drawable"
+            android:id="@+id/drawable"
+            android:layout_below="@id/textView"
+            android:layout_width="200dp"
+            android:layout_height="30dp"/>
+
+</RelativeLayout>

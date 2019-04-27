@@ -2,6 +2,7 @@ package com.engineer.utils
 
 import android.app.Activity
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.Build
 import android.os.Handler

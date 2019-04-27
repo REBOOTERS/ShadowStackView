@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/container"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transblue"
+                tools:context=".ui.activity.FakeActivity">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:elevation="14dp"
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/star"/>
+
+    <androidx.cardview.widget.CardView
+            android:layout_toEndOf="@id/image"
+            android:id="@+id/card"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="8dp"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:scaleType="fitXY"
+                android:src="@drawable/cat"
+                android:layout_width="100dp"
+                android:layout_height="100dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="150dp"
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B4A4A4"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/title"
+                android:maxLines="4"
+                android:layout_toStartOf="@id/avatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/time"
+                android:text="2019/04/27"
+                android:layout_marginBottom="5dp"
+                android:layout_alignLeft="@id/title"
+                android:layout_below="@id/title"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <ImageView
+                android:tint="@color/cpb_green"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/time"
+                android:layout_below="@id/title"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_android_black_24dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_alignParentEnd="true"
+                android:id="@+id/avatar"
+                android:layout_margin="10dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/avatar"/>
+
+    </RelativeLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_margin="20dp"
+            android:layout_below="@id/layout"
+            android:id="@+id/button"
+            android:text="I'm Button"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:elevation="11dp"
+            android:src="@drawable/cat"
+            android:id="@+id/webImage"
+            android:scaleType="fitXY"
+            android:layout_below="@id/button"
+            android:layout_margin="20dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+
+
+</RelativeLayout>

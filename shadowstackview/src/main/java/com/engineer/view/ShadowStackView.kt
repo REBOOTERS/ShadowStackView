@@ -3,10 +3,11 @@ package com.engineer.view
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Bitmap
+import android.util.Log
 import android.view.*
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
-import com.engineer.shadowstackview.R
+import com.engineer.shadowstackview.BuildConfig
 import com.engineer.utils.SysUtil
 import com.engineer.utils.ViewUtil
 import de.hdodenhof.circleimageview.CircleImageView
@@ -25,6 +26,7 @@ const val TIME = 150
 class ShadowStackView(activity: Activity) : View.OnTouchListener {
 
     private var mShadowCount = DEFAULT_SHADOW_COUNT
+    private var mAutoHideTargetView = false
 
     private val mActivity: Activity = activity
     private var mContainer: ViewGroup? = null
@@ -49,15 +51,22 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
         mContainer = container
     }
 
+    fun setAutoHideTargetView(hide: Boolean) {
+        mAutoHideTargetView = hide
+    }
+
     fun setTargetView(targetView: View) {
         mTargetView = targetView
         if (mContainer == null) {
             mContainer = mActivity.window.decorView as ViewGroup
         }
+        if (mContainer == null) {
+            Log.d(TAG, "huge error")
+            return
+        }
+
         mVelocityTracker = VelocityTracker.obtain()
-
         measureAndAttach()
-
         mTargetView.viewTreeObserver.addOnScrollChangedListener {
             if (mTargetViewWidth > 0 && mTargetViewHeight > 0) {
                 updateChildViewsPosition()
@@ -76,39 +85,6 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
                 }
             })
     }
-
-
-    // <editor-fold defaultstate="collapsed" desc="block">
-//    public void setContainer(ViewGroup container) {
-//        mVelocityTracker = VelocityTracker.obtain();
-//
-//        mContainer = (ViewGroup) mActivity.getWindow().getDecorView();
-////        mContainer = container;
-//        initTargetView();
-//        if (mTargetViewWidth == 0 || mTargetViewHeight == 0 || mFakeView == null) {
-//            mTargetView.getViewTreeObserver().addOnWindowFocusChangeListener(
-//                    new ViewTreeObserver.OnWindowFocusChangeListener() {
-//                        @Override
-//                        public void onWindowFocusChanged(boolean hasFocus) {
-//                            if (hasFocus) {
-//                                mTargetView.getViewTreeObserver().removeOnWindowFocusChangeListener(this);
-//                                initTargetView();
-//                                attachToDecorView();
-//                            }
-//                        }
-//                    });
-//        } else {
-//            attachToDecorView();
-//        }
-//
-//        mTargetView.getViewTreeObserver().addOnScrollChangedListener(() -> {
-//            if (mTargetViewWidth > 0 && mTargetViewHeight > 0 && mFakeView != null) {
-//                updateChildViewsPosition();
-//            }
-//        });
-//    }
-    // </editor-fold>
-
 
     private fun initTargetView() {
         mTargetViewWidth = mTargetView.width
@@ -153,8 +129,6 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
             shadow.translationY = mOriginLocation[1].toFloat()
             val alpha = if (i == mShadowCount - 1) 1.0f else 0.5f / mShadowCount * (i + 1)
             shadow.alpha = alpha
-            shadow.background = mActivity.getDrawable(R.drawable.red_background)
-            shadow.background.alpha = 0
             mChildViews.add(shadow)
             if (i == mShadowCount - 1) {
                 shadow.setOnTouchListener(this)
@@ -162,12 +136,20 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
                 shadow.setOnClickListener { v -> mTargetView.performClick() }
             }
         }
-        mTargetView.visibility = View.GONE
+        if (mAutoHideTargetView) {
+            mTargetView.visibility = View.GONE
+        } else {
+            mTargetView.visibility = View.INVISIBLE
+        }
     }
 
 
     private fun updateTargetViewPosition() {
         mTargetView.getLocationOnScreen(mOriginLocation)
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "location x==" + mOriginLocation[0])
+            Log.d(TAG, "location y==" + mOriginLocation[1])
+        }
     }
 
     private fun updateChildViewsPosition() {
@@ -233,8 +215,6 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
                     return true
                 }
             }
-            else -> {
-            }
         }
 
         return false
@@ -242,25 +222,25 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
 
     private fun releaseView() {
         val interpolator = OvershootInterpolator()
-        val duration = 700
+        val duration = 700L
         for (i in 0 until mShadowCount) {
             val childI = mChildViews[i]
-            val delay = 100 * (mShadowCount - 1 - i)
+            val delay = 100L * (mShadowCount - 1 - i)
             childI.postDelayed({
                 childI.animate()
                     .translationX(mOriginLocation[0].toFloat())
                     .translationY(mOriginLocation[1].toFloat())
-                    .setDuration(duration.toLong())
+                    .setDuration(duration)
                     .setInterpolator(interpolator)
                     .start()
-            }, delay.toLong())
+            }, delay)
         }
     }
 
     private fun dragView(v: Float, v1: Float, velocityX: Int, velocityY: Int, accX: Float, accY: Float) {
         for (i in 0 until mShadowCount) {
             val view = mChildViews[i]
-            val delay = (100 * (mShadowCount - 1 - i)).toLong()
+            val delay = 100L * (mShadowCount - 1 - i)
             view.postDelayed({
                 view.translationX = v
                 view.translationY = v1
