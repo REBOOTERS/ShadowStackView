@@ -23,7 +23,11 @@ class FakeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fake)
 
         ShadowStack.with(this).targetView(image).setShadowCount(9).apply()
-        ShadowStack.with(this).targetView(card).autoHideTargetView(true).setShadowCount(20).apply()
+        ShadowStack.with(this)
+            .targetView(card)
+            .autoHideTargetView(true)
+            .setShadowCount(20)
+            .apply()
         ShadowStack.with(this).targetView(layout).apply()
         ShadowStack.with(this).targetView(button).setShadowCount(20).autoHideTargetView(false).apply()
 

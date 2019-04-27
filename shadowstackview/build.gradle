@@ -3,6 +3,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+
+def path = rootProject.file("publish.gradle")
+apply from:file(path)
+
 android {
     compileSdkVersion 28
 

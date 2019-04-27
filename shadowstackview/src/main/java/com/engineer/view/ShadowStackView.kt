@@ -31,7 +31,6 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
     private val mActivity: Activity = activity
     private var mContainer: ViewGroup? = null
     private lateinit var mTargetView: View
-    private lateinit var mVelocityTracker: VelocityTracker
 
     private var mTargetViewHeight: Int = 0
     private var mTargetViewWidth: Int = 0
@@ -65,7 +64,6 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
             return
         }
 
-        mVelocityTracker = VelocityTracker.obtain()
         measureAndAttach()
         mTargetView.viewTreeObserver.addOnScrollChangedListener {
             if (mTargetViewWidth > 0 && mTargetViewHeight > 0) {
@@ -167,44 +165,17 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-        mVelocityTracker.addMovement(event)
-        val velocityX: Int
-        val velocityY: Int
-
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 updateTargetViewPosition()
                 if (event.eventTime - event.downTime >= TIME) {
-//
-                    mVelocityTracker.computeCurrentVelocity(1000, 1000f)
-                    velocityX = mVelocityTracker.xVelocity.toInt()
-                    velocityY = mVelocityTracker.xVelocity.toInt()
-                    val accX = velocityX / 1000f
-                    val accY = velocityY / 1000f
-
-                    dragView(
-                        event.rawX - mTargetViewWidth / 2f,
-                        event.rawY - mTargetViewHeight / 2f,
-                        velocityX, velocityY, accX, accY
-                    )
+                    dragView(event.rawX - mTargetViewWidth / 2f, event.rawY - mTargetViewHeight / 2f)
                     mChildViews[mShadowCount - 1].isClickable = false
                     return true
                 }
             }
             MotionEvent.ACTION_MOVE -> if (event.eventTime - event.downTime >= TIME) {
-                mVelocityTracker.computeCurrentVelocity(1000, 1000f)
-                velocityX = mVelocityTracker.xVelocity.toInt()
-                velocityY = mVelocityTracker.xVelocity.toInt()
-                val accX = velocityX / 1000f
-                val accY = velocityY / 1000f
-                dragView(
-                    event.rawX - mTargetViewWidth / 2f,
-                    event.rawY - mTargetViewHeight / 2f,
-                    velocityX,
-                    velocityY,
-                    accX,
-                    accY
-                )
+                dragView(event.rawX - mTargetViewWidth / 2f, event.rawY - mTargetViewHeight / 2f)
                 mChildViews[mShadowCount - 1].isClickable = false
                 return true
             }
@@ -237,7 +208,7 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
         }
     }
 
-    private fun dragView(v: Float, v1: Float, velocityX: Int, velocityY: Int, accX: Float, accY: Float) {
+    private fun dragView(v: Float, v1: Float) {
         for (i in 0 until mShadowCount) {
             val view = mChildViews[i]
             val delay = 100L * (mShadowCount - 1 - i)
