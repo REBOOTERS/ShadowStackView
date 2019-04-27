@@ -48,6 +48,8 @@ class BlankFragmentA : Fragment() {
 
         private var mActivity: Activity = activity
 
+        private val imgs = arrayOf(R.drawable.city, R.drawable.cat, R.drawable.girl, R.drawable.paint)
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.list_image_item, parent, false)
             if (viewType == type_move) {
@@ -68,7 +70,8 @@ class BlankFragmentA : Fragment() {
         }
 
         override fun onBindViewHolder(holder: MyHolder, position: Int) {
-
+            val index = position % imgs.size
+            holder.image.setImageResource(imgs[index])
         }
 
 

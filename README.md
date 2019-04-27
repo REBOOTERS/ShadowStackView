@@ -1,7 +1,9 @@
 # ShadowStackView
 
-Create something like **Shadow-View** animation when drag the view on screen .
+Create something like **Shadow-View** animation when drag the view on screen
 
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/ShadowStackView/shadowview.gif"/>    <img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/ShadowStackView/shadowview_fragment.gif"/>
 
 ## Gradle 
 
