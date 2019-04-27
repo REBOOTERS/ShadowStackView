@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Bitmap
 import android.util.Log
-import android.view.*
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.view.animation.OvershootInterpolator
 import android.widget.ImageView
-import com.engineer.shadowstackview.BuildConfig
 import com.engineer.utils.SysUtil
 import com.engineer.utils.ViewUtil
 import de.hdodenhof.circleimageview.CircleImageView
@@ -144,10 +146,9 @@ class ShadowStackView(activity: Activity) : View.OnTouchListener {
 
     private fun updateTargetViewPosition() {
         mTargetView.getLocationOnScreen(mOriginLocation)
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, "location x==" + mOriginLocation[0])
-            Log.d(TAG, "location y==" + mOriginLocation[1])
-        }
+        Log.d(TAG, "location x==" + mOriginLocation[0])
+        Log.d(TAG, "location y==" + mOriginLocation[1])
+
     }
 
     private fun updateChildViewsPosition() {

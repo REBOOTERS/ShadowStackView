@@ -7,7 +7,7 @@ Create something like **Shadow-View** animation when drag the view on screen .
 
 
 ```groovy
-implementation "com.reoobter:linktextview:0.0.1"
+implementation "com.rebooter:shadowstackview:0.0.1"
 ```
 
 ## Usage

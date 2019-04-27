@@ -7,7 +7,7 @@ def publish_version = "0.0.1"
 // <editor-fold desc="stable config" defaultstate="collapsed">
 publish {
     userOrg = 'rookieboy'
-    groupId = 'com.reoobter'
+    groupId = 'com.rebooter'
     artifactId = 'shadowstackview'
     publishVersion = "$publish_version"
     desc = 'Create something like Shadow-View animation when drag the view on screen .'
