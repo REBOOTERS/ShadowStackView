@@ -14,4 +14,12 @@
             android:layout_height="wrap_content"
             android:text="@string/hello_blank_fragment_b"/>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:elevation="4dp"
+            android:id="@+id/view_1"
+            android:layout_margin="20dp"
+            android:src="@drawable/avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
 </FrameLayout>

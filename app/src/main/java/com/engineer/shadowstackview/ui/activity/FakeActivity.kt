@@ -22,14 +22,14 @@ class FakeActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_fake)
 
-        ShadowStack.with(this).targetView(image).setShadowCount(9).apply()
+        ShadowStack.with(this).targetView(image).setShadowCount(8).apply()
         ShadowStack.with(this)
             .targetView(card)
             .autoHideTargetView(true)
-            .setShadowCount(20)
+            .setShadowCount(8)
             .apply()
         ShadowStack.with(this).targetView(layout).apply()
-        ShadowStack.with(this).targetView(button).setShadowCount(20).autoHideTargetView(false).apply()
+        ShadowStack.with(this).targetView(button).setShadowCount(8).autoHideTargetView(false).apply()
 
         button.setOnClickListener {
             Toast.makeText(this, "Button Click Still Work", Toast.LENGTH_SHORT).show()

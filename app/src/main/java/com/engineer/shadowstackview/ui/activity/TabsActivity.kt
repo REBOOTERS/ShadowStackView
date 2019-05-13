@@ -23,6 +23,6 @@ class TabsActivity : AppCompatActivity() {
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         view_pager.adapter = sectionsPagerAdapter
         tabs.setupWithViewPager(view_pager)
-        tabs.visibility = View.GONE
+//        tabs.visibility = View.GONE
     }
 }

@@ -27,6 +27,7 @@ class BlankFragmentB : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ShadowStack.with(activity!!).targetView(view_1).apply()
         ShadowStack.with(activity!!).targetView(text_view_2).apply()
     }
 

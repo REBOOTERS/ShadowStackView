@@ -9,8 +9,8 @@ import com.engineer.shadowstackview.ui.fragments.BlankFragmentB
 import com.engineer.shadowstackview.ui.fragments.BlankFragmentA
 
 private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1
-//    R.string.tab_text_2
+    R.string.tab_text_1,
+    R.string.tab_text_2
 )
 
 /**

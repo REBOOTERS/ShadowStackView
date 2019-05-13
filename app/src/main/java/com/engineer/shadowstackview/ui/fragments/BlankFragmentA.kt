@@ -35,7 +35,7 @@ class BlankFragmentA : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ShadowStack.with(activity!!).targetView(view_1).apply()
-        ShadowStack.with(activity!!).targetView(drawable).setShadowCount(40).apply()
+        ShadowStack.with(activity!!).targetView(drawable).setShadowCount(8).apply()
         list.layoutManager = NoScrollableManager(context, 3)
         list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         list.adapter = Adapter(activity!!)
